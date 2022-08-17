@@ -1,5 +1,5 @@
-import {Button} from "@mui/material"
-import {DeleteIcon,SendIcon} from "@mui/icons-material"
+import {Button,DeleteIcon,SendIcon} from "@mui/material"
+
 
 function Buttons(){
     return <>
