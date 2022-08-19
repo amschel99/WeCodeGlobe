@@ -1,20 +1,39 @@
 
-//import Navbar1 from "./components/Navbar-slide"
-import Navbar2 from "./components/Navbar-menu"
+import {useState} from "react"
 import "bootstrap/dist/css/bootstrap.css"
-import {Route, Routes} from "react-router-dom"
+import {Box, Stack} from "@mui/material"
+import Sidebar from "./components/Sidebar"
+import Rightbar from "./components/Rightbar"
+import Navbar from "./components/Navbar"
+import Feed from "./components/Feed"
+import Add from "./components/Add"
+
+import {createTheme,ThemeProvider} from "@mui/material"
 function App() {
+  const [mode,setMode]=useState("light")
+  const darkMode=createTheme({
+    palette:{
+      mode:mode
+    }
+  })
   return (
-
-    
-<Routes>
-
-  <Route path="/" element={<Navbar2 title="HOME"/>}/>
+    <ThemeProvider theme={darkMode}>
+<Box bgcolor={"background.default"} color={'text.primary'}>
+  {/*navbar there */}
+  <Navbar/>
+<Stack direction="row" spacing={2} p={2}>
+  <Sidebar setMode={setMode} mode={mode}/>
+  <Feed/>
+  <Rightbar/>
   
-  <Route path="profile" element={<Navbar2 title="PROFILE"/>}/>
-  
-  <Route path="messages" element={<Navbar2 title="messages"/>}/>
-</Routes>
+
+</Stack>
+
+<Add/>
+
+</Box>
+</ThemeProvider>
+ 
   );
 }
 
