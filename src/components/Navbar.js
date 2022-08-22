@@ -1,105 +1,123 @@
-import React,{useState} from 'react'
-import {AppBar,styled,Toolbar,Typography,Box, InputBase,Badge,Avatar, MenuItem,Menu} from "@mui/material"
-import {BookOnline,Message,Notifications} from "@mui/icons-material"
+import React,{useState,useEffect} from "react"
+import {AppBar,Toolbar,Typography,Button,IconButton,Slide,styled,Box,Tab,Tabs,Stack} from "@mui/material"
+import MenuIcon from "@mui/icons-material/Menu"
+import About from './About'
+import TechStack from './TechStack'
+import Work from './Work'
+import DrawerComponent from "./Drawer"
+import MobileDrawer from './MobileDrawer'
 
 
-const StyledToolbar=styled(Toolbar)(
-    {
-        display:"flex",
-justifyContent:"space-between"
+
+
+
+const Navbar= ({theme})=>{
+    const [scrolling,setScrolling]=useState(false)
+    const [scrollTop, setScrollTop]=useState(0)
+    const[value,setValue]=useState(0)
+    const[open,setOpen]=useState(false)
+    const updateValue=(e,v)=>{
+       
+        setValue(v)
     }
-)
+    
 
-const Search= styled("div")(({theme})=>(
-
-  {backgroundColor:"white",
-padding:'0 10px',
-borderRadius:theme.shape.borderRadius,
-width:'40%'
-
-  }
-
-))
-const Icons= styled(Box)(({theme})=>(
-
-  {display:"none", gap:"20px",alignItems:"center",
-  [theme.breakpoints.up("sm")]:{
-    display:'flex' 
-  }
+const StyledToolbar=styled(Toolbar)(({theme})=>(
+{
+display:"flex",
+justifyContent:"space-between"
 }
-
 ))
-const UserBox= styled(Box)(({theme})=>(
-
-  {display:"flex", gap:"10px",alignItems:"center",[theme.breakpoints.up("sm")]:{
-    display:'none' 
-  }}
-
-))
-
-const Navbar = () => {
-
-  const [anchor,setAnchor]=useState(null)
-  const closeMenu=()=>{
-    setAnchor(null)
-  }
-  const MenuItems=()=>{
-    return <>
-    <MenuItem>Profile</MenuItem>
-    <MenuItem>My Account</MenuItem>
-    <MenuItem>Logout</MenuItem>
-    </>
-  }
-
-  return (
-    <AppBar sx={{"z-index":10}} position="sticky">
-        <StyledToolbar>
-            <Typography variant="h6" sx={{display:{xs:"none",sm:"block"}}}>TECHLIFY</Typography>
-            <BookOnline sx={{display:{xs:"block",sm:"none"}}}/>
-            <Search  bgcolor={"background.default"} color={"text.primary"}>
-           
- <InputBase sx={{width:"100%",color:"dodgerblue"}}  placeholder='Search...' aria-placeholder='search'/>
-              
-              </Search>
-             
-            <Icons>
-
-              <Badge badgeContent={3} color="error">
-<Message/>
-              </Badge>
-              
-              <Badge badgeContent={6} color="error">
-<Notifications/>
-              </Badge>
-              <Avatar sx={{width:"30px",height:"30px"}}
-              onClick={(e)=>setAnchor(e.currentTarget)}
-              />
-            </Icons>
-            <UserBox>
-              <Avatar sx={{width:"30px",height:"30px"}}
-              onClick={(e)=>setAnchor(e.currentTarget)}
-              />
-              <Menu
-              anchorEL={anchor}
-              open={Boolean(anchor)}
-              onClose={closeMenu}
-              anchorOrigin={
-                {
-                  vertical:"top",
-                  horizontal:'right'
-                }
-              }
-              >
-                <MenuItems closeMenu={closeMenu}/>
-              </Menu>
-              <Typography>John Doe</Typography>
-            </UserBox>
-         
-        </StyledToolbar>
-
-    </AppBar>
-   
-  )
+const StyledBox=styled(Box)(({theme})=>(
+{
+display:"flex",
+justifyContent:"space-evenly",
+alignItems:"center"
 }
+))
+const StyledNav=styled(AppBar)(({theme})=>(
+{
+backgroundColor:'white',
+'z-index':10
+}
+))
 
+    useEffect(()=>{
+           function handleScroll(e){
+        setScrollTop(e.target.documentElement.scrollTop)
+        setScrolling(e.target.documentElement.scrollTop>scrollTop)
+    }
+
+
+        window.addEventListener('scroll',handleScroll)
+        return ()=>{
+            window.removeEventListener('scroll', handleScroll)
+        }
+
+    },[scrolling,scrollTop])
+
+    useEffect(()=>{
+       return  setScrolling((prev)=>prev!==scrolling)
+    },[scrolling])
+
+
+
+    return (
+        <div   >
+            <Slide in={!scrolling}>
+         <StyledNav >
+            <StyledToolbar sx={{flex:4}}>
+                <StyledBox>
+                <IconButton
+               onClick={()=>setOpen((prev)=>!prev)}
+                aria-label="Menu"
+                sx={{display:{xs:"block",sm:"none"},color:'rgb(20, 15, 35)'}}
+                >
+                    <MenuIcon/>
+                </IconButton>
+                <Box sx={{display:'flex',flexDirection:'column'}}>
+                 
+                    <Typography variant='h5' component='h4'  sx={{color:"rgb(107, 20, 41)",fontWeight:'bold'}} >
+                        WeCoGlobe
+                  
+              </Typography>
+
+                </Box>
+                
+               
+                </StyledBox>
+                <StyledBox sx={{flex:4,display:{xs:'none',sm:'flex'}}}>
+      <Tabs value={value} onChange={updateValue} >
+        <Tab  sx={{color:'rgb(20, 15, 35)',fontWeight:'bold'}} label="About Us"/>
+           <Tab  sx={{color:'rgb(20, 15, 35)',fontWeight:'bold'}}component={Button}  color='inherit' label="How we Work"/>
+              <Tab sx={{color:'rgb(20, 15, 35)',fontWeight:'bold'}} color='inherit' label="Technology stack"/>
+        </Tabs>              
+
+                </StyledBox>
+                <StyledBox  sx={{justifyContent:'space-evenly',flex:1}}>
+                    
+
+<Button  variant='contained' color="calm">Sign Up</Button>
+                </StyledBox>
+                
+            </StyledToolbar>
+
+
+         </StyledNav>
+          </Slide>
+          <Box sx={{marginTop:'80px'}}>
+            <Stack direction='row' gap={40}>
+<DrawerComponent />
+<MobileDrawer open={open}/>
+{value===0 && <About sx={{marginLeft:500,border:'2px solid red','z-index':100}} />}
+{value===1 && <Work  />}
+{value===2 && <TechStack />}
+            </Stack>
+
+          </Box>
+
+
+        </div>
+    )
+}
 export default Navbar
