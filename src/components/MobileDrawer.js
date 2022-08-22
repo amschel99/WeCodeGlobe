@@ -49,6 +49,10 @@ const DrawerComponent = ({open,setOpen}) => {
 
     const ListItems=({items})=>{
         return <>
+
+
+
+        
         {items.map(({label,Icon},i)=>{
             return <ListItem button key={i}>
 
@@ -64,6 +68,9 @@ const DrawerComponent = ({open,setOpen}) => {
   return (
     <Drawer open={open} onClose={()=>setOpen(false)} variant='temporary' sx={{'z-index':5,display:{xs:'block',sm:'none'} }} >
 <List sx={{marginTop:7}}>
+
+
+  
 <ListSubheader>learning Paths</ListSubheader>
 <ListItems items={items.learningPaths}/>
 <ListSubheader>Playgrounds</ListSubheader>

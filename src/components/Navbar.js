@@ -105,8 +105,8 @@ backgroundColor:'white',
 
          </StyledNav>
           </Slide>
-          <Box sx={{marginTop:'80px'}}>
-            <Stack direction='row' gap={40}>
+          <Box sx={{marginTop:{xs:'60px',sm:'67px'}}}>
+            <Stack direction='row' gap={36}>
 <DrawerComponent />
 <MobileDrawer open={open} setOpen={setOpen}/>
 {value===0 && <About sx={{marginLeft:500,border:'2px solid red','z-index':100}} />}
