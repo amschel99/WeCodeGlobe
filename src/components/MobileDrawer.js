@@ -1,7 +1,7 @@
 import React from 'react'
 import {ListItem,ListItemIcon,ListItemText,Drawer,List,ListSubheader} from '@mui/material'
 import {Code,GitHub,Javascript, CodeSharp as Reactjs,Html,Book as Blog,CardMembership as Certifications,Dashboard} from "@mui/icons-material"
-const DrawerComponent = ({open}) => {
+const DrawerComponent = ({open,setOpen}) => {
 
 
     const [items]=React.useState({
@@ -62,7 +62,7 @@ const DrawerComponent = ({open}) => {
         </>
     }
   return (
-    <Drawer open={open} variant='temporary' sx={{'z-index':5,display:{xs:'block',sm:'none'} }} >
+    <Drawer open={open} onClose={()=>setOpen(false)} variant='temporary' sx={{'z-index':5,display:{xs:'block',sm:'none'} }} >
 <List sx={{marginTop:7}}>
 <ListSubheader>learning Paths</ListSubheader>
 <ListItems items={items.learningPaths}/>

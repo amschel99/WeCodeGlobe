@@ -108,7 +108,7 @@ backgroundColor:'white',
           <Box sx={{marginTop:'80px'}}>
             <Stack direction='row' gap={40}>
 <DrawerComponent />
-<MobileDrawer open={open}/>
+<MobileDrawer open={open} setOpen={setOpen}/>
 {value===0 && <About sx={{marginLeft:500,border:'2px solid red','z-index':100}} />}
 {value===1 && <Work  />}
 {value===2 && <TechStack />}
