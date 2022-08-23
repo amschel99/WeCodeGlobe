@@ -1,42 +1,43 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import {ListItem,ListItemIcon,ListItemText,Drawer,List,ListSubheader} from '@mui/material'
 import {Code,GitHub,Javascript, CodeSharp as Reactjs,Html,Book as Blog,CardMembership as Certifications,Dashboard} from "@mui/icons-material"
 const DrawerComponent = () => {
 
     const [items]=React.useState({
       learningPaths:[
-        {label:"Frontend",Icon:Reactjs},
-          {label:"Backend",Icon:Code},
-            {label:"Fullstack",Icon:Javascript},
-              {label:"Version control",Icon:GitHub}
+        {label:"Frontend",Icon:Reactjs,path:'frontend'},
+          {label:"Backend",Icon:Code,path:'backend'},
+            {label:"Fullstack",Icon:Javascript,path:'fullstack'},
+              {label:"Version control",Icon:GitHub,path:'git'}
       ],
       PlayGrounds:[
-        {label:"Javascript playground",Icon:Javascript},
-          {label:"Html and CSS playground",Icon:Html},
-            {label:"React playground",Icon:Reactjs},
-              {label:"Node js playground",Icon:Code}
+        {label:"Javascript playground",Icon:Javascript,path:'jsPlayground'},
+          {label:"Html and CSS playground",Icon:Html,path:'htmlPlayground'},
+            {label:"React playground",Icon:Reactjs,path:'reactPlayground'},
+              {label:"Node js playground",Icon:Code,path:'nodePlayground'}
 
       ],
       Forum:[
-        {label:"Frontend Forum",Icon:Javascript},
-          {label:"Backend Forum",Icon:Code},
-            {label:"Fullstack forum",Icon:Code},
+        {label:"Frontend Forum",Icon:Javascript,path:'frontendForum'},
+          {label:"Backend Forum",Icon:Code,path:'backendForum'},
+            {label:"Fullstack forum",Icon:Code,path:'fullstackForum'},
             
 
       ],
       Blog:[
-             {label:"Coders blog",Icon:Blog}
+             {label:"Coders blog",Icon:Blog,path:'blog'}
     
   
       ],
       Certifications:[
-           {label:"Frontend certifications",Icon:Certifications},
-                    {label:"Backend",Icon:Certifications},
-                             {label:"Other certifications",Icon:Certifications}
+           {label:"Frontend certifications",Icon:Certifications,path:'frontendCertification'},
+                    {label:"Backend",Icon:Certifications,path:'backendCertification'},
+                             {label:"Other certifications",Icon:Certifications,path:'otherCertifications'}
 
       ],
    Dashboard:[
-           {label:"My Dashboard",Icon:Dashboard},
+           {label:"My Dashboard",Icon:Dashboard,path:'dashboard'},
              
 
       ],
@@ -48,8 +49,8 @@ const DrawerComponent = () => {
 
     const ListItems=({items})=>{
         return <>
-        {items.map(({label,Icon},i)=>{
-            return <ListItem button key={i}>
+        {items.map(({label,Icon,path},i)=>{
+            return <ListItem component={Link} to={`${path}`} key={i}>
 
 <ListItemIcon>
     <Icon/>
