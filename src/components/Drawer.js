@@ -63,18 +63,18 @@ const DrawerComponent = () => {
   return (
     <Drawer variant='permanent' sx={{'z-index':5, display:{xs:'none',sm:'block'}}} >
 <List sx={{marginTop:7}}>
+<ListSubheader>Dashboard</ListSubheader>
+<ListItems items={items.Dashboard}/>
 <ListSubheader>Learning Paths</ListSubheader>
 <ListItems items={items.learningPaths}/>
 <ListSubheader>Playgrounds</ListSubheader>
 <ListItems items={items.PlayGrounds}/>
 <ListSubheader>Forum</ListSubheader>
 <ListItems items={items.Forum}/>
-<ListSubheader>Blog</ListSubheader>
-<ListItems items={items.Blog}/>
 <ListSubheader>Certifications</ListSubheader>
 <ListItems items={items.Certifications}/>
-<ListSubheader>Dashboard</ListSubheader>
-<ListItems items={items.Dashboard}/>
+<ListSubheader>Blog</ListSubheader>
+<ListItems items={items.Blog}/>
 </List>
     </Drawer>
   )
