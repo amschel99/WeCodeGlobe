@@ -68,10 +68,7 @@ const DrawerComponent = ({open,setOpen}) => {
   return (
     <Drawer open={open} onClose={()=>setOpen(false)} variant='temporary' sx={{'z-index':5,display:{xs:'block',sm:'none'} }} >
 <List sx={{marginTop:7}}>
-
-
-  
-<ListSubheader>learning Paths</ListSubheader>
+<ListSubheader>Learning Paths</ListSubheader>
 <ListItems items={items.learningPaths}/>
 <ListSubheader>Playgrounds</ListSubheader>
 <ListItems items={items.PlayGrounds}/>
