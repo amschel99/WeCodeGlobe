@@ -45,7 +45,6 @@ const Navbar = ({ theme }) => {
     "z-index": 10,
   }));
 
-
   useEffect(() => {
     function handleScroll(e) {
       setScrollTop(e.target.documentElement.scrollTop);
@@ -108,7 +107,11 @@ const Navbar = ({ theme }) => {
               </Tabs>
             </StyledBox>
             <StyledBox sx={{ justifyContent: "space-evenly", flex: 1 }}>
-              <Button variant="contained" color="calm" onClick={()=> setOpenModal(true)}>
+              <Button
+                variant="contained"
+                color="calm"
+                onClick={() => setOpenModal(true)}
+              >
                 Sign Up
               </Button>
             </StyledBox>
@@ -134,8 +137,8 @@ const Navbar = ({ theme }) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box>
-            <SignUp/>
+        <Box sx={{ width: {xs: "100vw", sm: "390px"}, position: "absolute", left: {xs: "0vw", sm: "30vw"} }}>
+          <SignUp />
         </Box>
       </Modal>
     </div>
