@@ -13,19 +13,6 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://amschel.tech">
-       
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
 const theme = createTheme();
 
 export default function SignUp() {
@@ -40,7 +27,7 @@ export default function SignUp() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" sx={{backgroundColor:"rgb(107, 200, 41)",width:{xs:"70vw",sm:'auto'}}} >
+      <Container component="main" sx={{backgroundColor:"rgb(107, 200, 41)",width:{xs:"80vw",sm:'auto'}, height:{xs:'70vh',sm:'auto'}}} >
         <CssBaseline />
         <Box
           sx={{
@@ -132,7 +119,7 @@ export default function SignUp() {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 5 }} />
+       
       </Container>
     </ThemeProvider>
   );
