@@ -40,7 +40,7 @@ export default function SignUp() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" sx={{backgroundColor:"rgb(107, 20, 41)",width:{xs:"70vw",sm:'auto'}}} >
+      <Container component="main" sx={{backgroundColor:"rgb(107, 200, 41)",width:{xs:"70vw",sm:'auto'}}} >
         <CssBaseline />
         <Box
           sx={{
@@ -48,6 +48,7 @@ export default function SignUp() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            color:'white'
           
        
           }}
@@ -66,6 +67,7 @@ export default function SignUp() {
                   name="firstName"
                   required
                   fullWidth
+                  sx={{color:'white'}}
                   id="firstName"
                   label="First Name"
                   autoFocus
@@ -74,6 +76,7 @@ export default function SignUp() {
               <Grid item xs={12} sm={6}>
                 <TextField
                   required
+                       sx={{color:'white'}}
                   fullWidth
                   id="lastName"
                   label="Last Name"
@@ -84,6 +87,7 @@ export default function SignUp() {
               <Grid item xs={12}>
                 <TextField
                   required
+                       sx={{color:'white'}}
                   fullWidth
                   id="email"
                   label="Email Address"
@@ -93,6 +97,7 @@ export default function SignUp() {
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                     sx={{color:'white'}}
                   required
                   fullWidth
                   name="password"
