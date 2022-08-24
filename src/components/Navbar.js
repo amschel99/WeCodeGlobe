@@ -1,11 +1,12 @@
 import React,{useState,useEffect} from "react"
-import {AppBar,Toolbar,Typography,Button,IconButton,Slide,styled,Box,Tab,Tabs,Stack} from "@mui/material"
+import {AppBar,Toolbar,Typography,Button,IconButton,Slide,styled,Box,Tab,Tabs,Stack,Modal} from "@mui/material"
 import MenuIcon from "@mui/icons-material/Menu"
 import About from './About'
 import TechStack from './TechStack'
 import Work from './Work'
 import DrawerComponent from "./Drawer"
 import MobileDrawer from './MobileDrawer'
+import SignUp from './SignUp'
 
 
 
@@ -16,6 +17,7 @@ const Navbar= ({theme})=>{
     const [scrollTop, setScrollTop]=useState(0)
     const[value,setValue]=useState(0)
     const[open,setOpen]=useState(false)
+        const[openModal,setOpenModal]=useState(false)
     const updateValue=(e,v)=>{
        
         setValue(v)
@@ -88,16 +90,16 @@ backgroundColor:'white',
                 </StyledBox>
                 <StyledBox sx={{flex:4,display:{xs:'none',sm:'flex'}}}>
       <Tabs value={value} onChange={updateValue} >
-        <Tab  sx={{color:'rgb(20, 15, 35)',fontWeight:'bold'}} label="About Us"/>
+        <Tab  sx={{color:'rgb(20, 15, 35)',fontWeight:'bold'}} label="Technology Stack"/>
            <Tab  sx={{color:'rgb(20, 15, 35)',fontWeight:'bold'}}component={Button}  color='inherit' label="How we Work"/>
-              <Tab sx={{color:'rgb(20, 15, 35)',fontWeight:'bold'}} color='inherit' label="Technology stack"/>
+              <Tab sx={{color:'rgb(20, 15, 35)',fontWeight:'bold'}} color='inherit' label="About Us"/>
         </Tabs>              
 
                 </StyledBox>
                 <StyledBox  sx={{justifyContent:'space-evenly',flex:1}}>
                     
 
-<Button  variant='contained' color="calm">Sign Up</Button>
+<Button onClick={()=>setOpenModal(true)}  variant='contained' color="calm">Sign Up</Button>
                 </StyledBox>
                 
             </StyledToolbar>
@@ -108,13 +110,22 @@ backgroundColor:'white',
           <Box sx={{marginTop:{xs:'55px',sm:'67px'}}}>
             <Stack direction='row' gap={36}>
 <DrawerComponent />
-<MobileDrawer open={open} setOpen={setOpen}/>
-{value===0 && <About sx={{marginLeft:500,border:'2px solid red','z-index':100}} />}
+<MobileDrawer open={open} setOpen={setOpen} value={value} updateValue={updateValue} />
+{value===0 &&  <TechStack /> }
 {value===1 && <Work  />}
-{value===2 && <TechStack />}
+{value===2 && <About sx={{marginLeft:500,border:'2px solid red','z-index':100}} />}
             </Stack>
 
           </Box>
+          <Modal
+  open={openModal}
+  onClose={()=>setOpenModal(false)}
+  aria-labelledby="modal-modal-title"
+  aria-describedby="modal-modal-description"
+>
+    <SignUp/>
+  
+</Modal>
 
 
         </div>
