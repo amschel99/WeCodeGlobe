@@ -1,29 +1,36 @@
 import React from 'react'
 import logo from '../assets/images/logo.svg'
 
+import {Link} from 'react-router-dom'
+
 import {Card,CardActions,Button,CardMedia,CardContent,Typography} from '@mui/material'
-const CourseCard = () => {
+const CourseCard = ({name,image,duration,descrption,id}) => {
+
+
+
+
   return (
   
     <Card sx={{width:{xs:'100%',sm:'100%',md:'30%'} }}>
       <CardMedia
-        component="img"
+        component="image"
         height="140"
-        image={logo}
-        alt="green iguana"
+       
+      image={image}
+  alt={name}
       />
       <CardContent>
+   
         <Typography gutterBottom variant="h5" component="div">
-          Lizard
+    {name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
+        {descrption}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+       <Typography component={Link} to={`/player/${id}`}>Watch now</Typography>
+
       </CardActions>
     </Card>
   );
